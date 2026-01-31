@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
+import json
 
 # Target URL
 url = 'https://kathmandupost.com/'
@@ -23,7 +24,6 @@ trending_articles_urls = []
 for each_path in trending_paths:
     full_url = 'https://kathmandupost.com' + each_path
     trending_articles_urls.append(full_url)
-
 
 # print("Trending Articles URLs:", trending_articles_urls)
 # Visit trending articles and extract title, author, date and content
@@ -48,5 +48,9 @@ for article_url in trending_articles_urls:
         'url': article_url,
         'scraped_at': datetime.now().isoformat()
     })
+   
+# saving the data to a JSON file
+with open('kathmandu_post_output.json', 'a', encoding='utf-8') as f:
+    json.dump(articles_data, f, ensure_ascii=False, indent=4)
 
-print(articles_data)
+print(f"Saved records to json file.")
