@@ -22,9 +22,6 @@ splitter = RecursiveCharacterTextSplitter(
     separators=[".", "\n"]
    )
 
-# current_count = collection.count()
-# if collection.count() == 0:  # Only build the database if it's empty
-# print("Database is empty. Building the database...")
 with open("articles.jsonl", "r", encoding="utf-8") as f:
     for a_i, article in enumerate(f):
         if a_i <= counter:
@@ -54,16 +51,6 @@ with open("counter.txt", "w") as f:
     f.write(str(counter))
 
 print("Database built successfully!")
-
-# query = "what are different problems provinces of nepal are facing?"
-# query = "Where is Soaltee Hotel located?"
-# query = "Are there any predicted hindrance for upcoming election ?"
-# query = "Who is contending for first title at the under-age tournament?"
-# query_embed = remote_client.embed(model="nomic-embed-text", input=f"query: {query}")["embeddings"][0]
-# results = collection.query(query_embeddings=[query_embed], n_results=3)
-# print(f"\nQuestion: {query}")
-
-# print(f'\n Title : No metadata \n {results["documents"][0]}')
 
 while True:
     user_input = input("What's your doubt? (Type 'exit' or 'quit' to stop) ")
